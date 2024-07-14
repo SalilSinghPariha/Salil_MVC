@@ -14,12 +14,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\Salil_MVC.DataAccess\Salil_MVC.DataAccess.csproj" />
     <ProjectReference Include="..\Salil_MVC.Models\Salil_MVC.Models.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

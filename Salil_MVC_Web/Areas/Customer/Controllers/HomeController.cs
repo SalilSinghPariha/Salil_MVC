@@ -2,7 +2,7 @@
 using Salil_MVC.Models;
 using System.Diagnostics;
 
-namespace Salil_MVC_Web.Controllers
+namespace Salil_MVC_Web.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {

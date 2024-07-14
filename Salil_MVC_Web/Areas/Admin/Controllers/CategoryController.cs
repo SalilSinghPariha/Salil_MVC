@@ -1,21 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Salil_MVC.DataAccess.Data;
+using Salil_MVC.DataAccess.Repository;
 using Salil_MVC.DataAccess.Repository.IRepository;
 using Salil_MVC.Models;
 
-namespace Salil_MVC_Web.Controllers
+namespace Salil_MVC_Web.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IUnitOfWorks _unitOfWorks;
         public CategoryController(IUnitOfWorks unitOfWorks)
         {
-          _unitOfWorks = unitOfWorks;
-            
+            _unitOfWorks = unitOfWorks;
+
         }
         public IActionResult Index()
         {
-            List<Category> category= (List<Category>)_unitOfWorks.CategoryRepository.GetAll();
+            List<Category> category = (List<Category>)_unitOfWorks.CategoryRepository.GetAll();
             return View(category);
         }
 
@@ -42,12 +43,12 @@ namespace Salil_MVC_Web.Controllers
         {
             //asp-route-categoryid="@item.Id" this is from view which will pass here once we clikc edit and
             //like this we can do it directly in .net core
-            if (id==null|id==0) 
-            { 
+            if (id == null | id == 0)
+            {
                 return NotFound();
             }
 
-            Category category = _unitOfWorks.CategoryRepository.GetFirstOrDefault(c => c.Id==id);
+            Category category = _unitOfWorks.CategoryRepository.GetFirstOrDefault(c => c.Id == id);
 
             if (category == null)
             {
@@ -91,15 +92,20 @@ namespace Salil_MVC_Web.Controllers
         [HttpPost]
         public IActionResult Remove(Category category)
         {
-            if (ModelState.IsValid)
+            var ctgFromDb = _unitOfWorks.CategoryRepository.GetFirstOrDefault(c => c.Id == category.Id);
+            if (ctgFromDb == null)
             {
-                _unitOfWorks.CategoryRepository.Remove(category);
-                _unitOfWorks.Save();
-                TempData["Success"] = "Category created succesfully";
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            TempData["Success"] = "Error occured while removing..";
-            return View();
+            else
+            {
+                _unitOfWorks.CategoryRepository.Remove(ctgFromDb);
+                _unitOfWorks.Save();
+                TempData["Success"] = "Category deleted succesfully";
+                return RedirectToAction("Index");
+
+            }
+
         }
 
     }
