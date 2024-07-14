@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Salil_MVC_Web.Models;
+using Salil_MVC.Models;
 using System.Diagnostics;
 
 namespace Salil_MVC_Web.Controllers

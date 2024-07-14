@@ -1,4 +1,4 @@
-namespace Salil_MVC_Web.Models
+namespace Salil_MVC.Models
 {
     public class ErrorViewModel
     {

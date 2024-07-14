@@ -1,7 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Salil_MVC.DataAccess.Data;
+using Salil_MVC.DataAccess.Repository;
+using Salil_MVC.DataAccess.Repository.IRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUnitOfWorks, UnitOfWork>();
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
+option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
 
 var app = builder.Build();
 
