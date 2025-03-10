@@ -60,6 +60,7 @@ namespace Salil_MVC_Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Update(Category category)
         {
+            //test
             if (ModelState.IsValid)
             {
                 _unitOfWorks.CategoryRepository.Update(category);
