@@ -11,6 +11,7 @@ namespace Salil_MVC.DataAccess.Repository
     public class UnitOfWork : IUnitOfWorks
     {
         public ICategoryRepository CategoryRepository { get;private set; }
+        public IProductRepository ProductRepository { get;private set; }
 
         private readonly ApplicationDbContext _dbContext;
 
@@ -19,6 +20,7 @@ namespace Salil_MVC.DataAccess.Repository
             _dbContext = applicationDBContext;
 
             CategoryRepository = new CategoryRespository(_dbContext);
+            ProductRepository = new ProductRespository(_dbContext);
         }
         public void Dispose()
         {
